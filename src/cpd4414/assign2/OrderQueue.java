@@ -28,18 +28,33 @@ import java.util.Queue;
 public class OrderQueue {
     Queue<Order> orderQueue = new ArrayDeque<>();
     
-    public void add(Order order) throws Exception {
+    public void add(Order order) throws PurchaseException,CustomerException {
         if(order.getCustomerId().isEmpty() || order.getCustomerName().isEmpty())
         {
-            throw new Exception();
+            throw new CustomerException("Invalid customer");
         }
          
         if(order.getListOfPurchases().isEmpty())
         {
-            throw new Exception();
+            throw new PurchaseException("Invalid purchase list");
         }
         orderQueue.add(order);
         
         order.setTimeReceived(new Date());
+    }
+    public class CustomerException extends Exception
+    {
+        public CustomerException(String msg)
+        {
+            super(msg);
+        }
+    }
+    
+    public class PurchaseException extends Exception
+    {
+        public PurchaseException(String msg)
+        {
+            super(msg);
+        }
     }
 }
