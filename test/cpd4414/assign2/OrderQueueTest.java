@@ -129,4 +129,17 @@ public class OrderQueueTest {
          
      }
     
+     @Test
+     public void testGetNextWhenAlreadyOrderThenReturnNull() throws PurchaseException, CustomerException
+     {
+         OrderQueue orderQueue= new OrderQueue();
+                  
+         Order result= orderQueue.next();
+         assertNull(result);
+         
+         
+         
+         
+     }
+    
 }
