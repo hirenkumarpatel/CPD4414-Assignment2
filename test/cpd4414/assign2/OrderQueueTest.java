@@ -121,7 +121,7 @@ public class OrderQueueTest {
          order2.addPurchase(new Purchase("ItemId",5));
          orderQueue.add(order2);
          
-         Order result= OrderQueue.next();
+         Order result= orderQueue.next();
          assertEquals(result, order1);
          assertNull(result.getTimeProcessed());
          
