@@ -138,8 +138,31 @@ public class OrderQueueTest {
          assertNull(result);
          
          
+     }
+     
+     @Test
+     
+     public void testProcessWhenTimeReceivedIsSetThenTimeProcessedToNow() throws PurchaseException, CustomerException
+     {
          
+        OrderQueue orderQueue= new OrderQueue();
+         Order order1= new Order("CustId","CustName");
+         order1.addPurchase(new Purchase("ItemId",5));
+         orderQueue.add(order1);
+         
+         Order order2= new Order("CustId","CustName");
+         order2.addPurchase(new Purchase("ItemId",5));
+         orderQueue.add(order2);
+         
+         Order nextOrder=orderQueue.next();
+         orderQueue.process(nextOrder);
+         
+         long expResult = new Date().getTime();
+        long result = nextOrder.getTimeReceived().getTime();
+        assertTrue(Math.abs(result - expResult) < 1000);
+
          
      }
+     
     
 }
