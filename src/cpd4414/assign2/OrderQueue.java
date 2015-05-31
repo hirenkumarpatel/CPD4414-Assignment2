@@ -33,8 +33,11 @@ public class OrderQueue {
         {
             throw new Exception();
         }
-        
-        
+         
+        if(order.getListOfPurchases().isEmpty())
+        {
+            throw new Exception();
+        }
         orderQueue.add(order);
         
         order.setTimeReceived(new Date());
