@@ -109,5 +109,24 @@ public class OrderQueueTest {
         
         
     }
+     @Test
+     public void testGetNextWhenAlreadyOrderThenGetNext() throws PurchaseException, CustomerException
+     {
+         OrderQueue orderQueue= new OrderQueue();
+         Order order1= new Order("CustId","CustName");
+         order1.addPurchase(new Purchase("ItemId",5));
+         orderQueue.add(order1);
+         
+         Order order2= new Order("CustId","CustName");
+         order2.addPurchase(new Purchase("ItemId",5));
+         orderQueue.add(order2);
+         
+         Order result= OrderQueue.next();
+         assertEquals(result, order1);
+         assertNull(result.getTimeProcessed());
+         
+         
+         
+     }
     
 }
